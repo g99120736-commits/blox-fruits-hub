@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍇 BLOX FRUITS HUB</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, #0d1b4d 0%, #1a2d5a 100%);
+            border-bottom: 3px solid #00ff88;
+            padding: 25px 20px;
+            box-shadow: 0 8px 32px rgba(0, 255, 136, 0.2);
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            color: #00ff88;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.8), 0 0 40px rgba(0, 255, 136, 0.4);
+            letter-spacing: 3px;
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 0 0 20px rgba(0, 255, 136, 0.8); }
+            50% { text-shadow: 0 0 30px rgba(0, 255, 136, 1), 0 0 50px rgba(0, 255, 136, 0.6); }
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* SEARCH BAR */
+        .search-container {
+            margin: 30px 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            padding: 14px 20px;
+            border: 2px solid #00ff88;
+            border-radius: 8px;
+            background: rgba(13, 27, 77, 0.5);
+            color: #e0e0e0;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.3);
+        }
+
+        .search-box:focus {
+            outline: none;
+            background: rgba(13, 27, 77, 0.8);
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.6);
+        }
+
+        .search-box::placeholder {
+            color: #888;
+        }
+
+        /* SECTION STYLES */
+        section {
+            margin: 40px 0;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(13, 27, 77, 0.6) 0%, rgba(26, 45, 90, 0.6) 100%);
+            border-left: 5px solid #00ff88;
+            border-radius: 8px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        section h2 {
+            font-size: 1.8rem;
+            color: #00ff88;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        section h2::before {
+            content: '';
+            width: 4px;
+            height: 30px;
+            background: #00ff88;
+            border-radius: 2px;
+        }
+
+        /* KODE SECTION */
+        .kode-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        .kode-card {
+            background: rgba(20, 35, 75, 0.8);
+            border: 1px solid rgba(0, 255, 136, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .kode-card:hover {
+            background: rgba(20, 35, 75, 1);
+            border-color: #00ff88;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+            transform: translateX(5px);
+        }
+
+        .kode-info {
+            flex: 1;
+        }
+
+        .kode-name {
+            font-size: 1.2rem;
+            color: #00ff88;
+            font-weight: bold;
+            margin-bottom: 5px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .kode-benefit {
+            color: #a0a0a0;
+            font-size: 0.95rem;
+        }
+
+        .btn-copy {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #00ff88 0%, #00cc6a 100%);
+            color: #0a0e27;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .btn-copy:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.6);
+        }
+
+        .btn-copy:active {
+            transform: scale(0.95);
+        }
+
+        .btn-copy.copied {
+            background: #4CAF50;
+        }
+
+        /* TIPS SECTION */
+        .tips-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .tip-item {
+            background: rgba(20, 35, 75, 0.8);
+            border-left: 4px solid #00ff88;
+            padding: 15px 20px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .tip-item:hover {
+            background: rgba(20, 35, 75, 1);
+            padding-left: 25px;
+        }
+
+        .tip-number {
+            color: #00ff88;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        /* TIER LIST */
+        .tier-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .tier {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+
+        .tier-label {
+            min-width: 100px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            padding: 10px 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .tier-s {
+            background: linear-gradient(135deg, #ff006e 0%, #fb5607 100%);
+            color: white;
+        }
+
+        .tier-a {
+            background: linear-gradient(135deg, #ffb703 0%, #fb8500 100%);
+            color: white;
+        }
+
+        .tier-fruits {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .fruit-badge {
+            background: rgba(0, 255, 136, 0.15);
+            border: 1px solid #00ff88;
+            color: #00ff88;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .fruit-badge:hover {
+            background: rgba(0, 255, 136, 0.3);
+            box-shadow: 0 0 15px rgba(0, 255, 136, 0.4);
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 2px solid rgba(0, 255, 136, 0.3);
+            color: #888;
+            margin-top: 50px;
+            font-size: 0.95rem;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        .footer-heart {
+            color: #00ff88;
+            animation: heartbeat 1.5s ease-in-out infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8rem;
+            }
+
+            section {
+                padding: 20px;
+                margin: 25px 0;
+            }
+
+            .kode-card {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .tier {
+                flex-direction: column;
+            }
+
+            .tier-label {
+                width: 100%;
+            }
+
+            .tier-fruits {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .search-box {
+                max-width: 100%;
+            }
+        }
+
+        /* BADGE AKTIF */
+        .badge-active {
+            display: inline-block;
+            background: #00ff88;
+            color: #0a0e27;
+            padding: 4px 10px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <h1>🍇 BLOX FRUITS HUB</h1>
+    </header>
+
+    <div class="container">
+        <!-- SEARCH BAR -->
+        <div class="search-container">
+            <input 
+                type="text" 
+                class="search-box" 
+                id="searchBox" 
+                placeholder="🔍 Cari kode promo..."
+            >
+        </div>
+
+        <!-- KODE AKTIF SECTION -->
+        <section id="kodeSection">
+            <h2>💚 Kode Aktif Terbaru (1 Oktober 2026)</h2>
+            <div class="kode-grid" id="kodeGrid">
+                <!-- Kode akan di-render oleh JavaScript -->
+            </div>
+        </section>
+
+        <!-- TIPS LEVELING SECTION -->
+        <section id="tipsSection">
+            <h2>⚡ Tips Level Cepat 1-2550</h2>
+            <div class="tips-list">
+                <div class="tip-item">
+                    <span class="tip-number">1.</span>
+                    <strong>Selesaikan Quest Dulu</strong> - Quest memberikan EXP lumayan, terutama di awal game. Jangan skip!
+                </div>
+                <div class="tip-item">
+                    <span class="tip-number">2.</span>
+                    <strong>Pakai Buah AoE (Area of Effect)</strong> - Gunakan Flame, Buddha, atau Magma untuk farm mob bersamaan dan lebih cepat.
+                </div>
+                <div class="tip-item">
+                    <span class="tip-number">3.</span>
+                    <strong>Hindari Berenang Setelah Makan Buah</strong> - Makan buah saat di air bisa bikin karakter tenggelam dan mati. Selalu makan buah di darat!
+                </div>
+                <div class="tip-item">
+                    <span class="tip-number">4.</span>
+                    <strong>Server Hop untuk Bos</strong> - Jika bos sudah diambil orang lain, pindah server untuk mendapatkan bos yang fresh dan EXP lebih cepat.
+                </div>
+                <div class="tip-item">
+                    <span class="tip-number">5.</span>
+                    <strong>Grind di Area Level Sesuai</strong> - Farm di area yang sesuai level kamu untuk EXP optimal. Terlalu mudah = EXP minim, terlalu sulit = banyak mati.
+                </div>
+                <div class="tip-item">
+                    <span class="tip-number">6.</span>
+                    <strong>Gunakan Kode Promo</strong> - Manfaatkan kode aktif di atas untuk boost 2x EXP dan naik level lebih cepat!
+                </div>
+            </div>
+        </section>
+
+        <!-- TIER LIST SECTION -->
+        <section id="tierSection">
+            <h2>🏆 Tier List Buah Terbaik</h2>
+            <div class="tier-container">
+                <div class="tier">
+                    <div class="tier-label tier-s">S-TIER</div>
+                    <div class="tier-fruits">
+                        <span class="fruit-badge">🐉 Dragon</span>
+                        <span class="fruit-badge">🦊 Kitsune</span>
+                        <span class="fruit-badge">🍪 Dough</span>
+                        <span class="fruit-badge">🐆 Leopard</span>
+                    </div>
+                </div>
+                <div class="tier">
+                    <div class="tier-label tier-a">A-TIER</div>
+                    <div class="tier-fruits">
+                        <span class="fruit-badge">🗿 Buddha</span>
+                        <span class="fruit-badge">🌋 Magma</span>
+                        <span class="fruit-badge">⚡ Light</span>
+                        <span class="fruit-badge">👤 Shadow</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>Made with <span class="footer-heart">❤️</span> by Exil</p>
+        <p>📍 Bandung | 🎮 Blox Fruits Enthusiast</p>
+        <p style="color: #00ff88; margin-top: 10px;">Last Updated: 1 Oktober 2026</p>
+    </footer>
+
+    <script>
+        // DATA KODE
+        const kodes = [
+            { name: 'LIGHTNINGABUSE', benefit: '20m 2x EXP' },
+            { name: 'SUB2GAMERROBOT_EXP1', benefit: '30m 2x EXP' },
+            { name: 'EASTEREXP', benefit: 'Bonus EXP' },
+            { name: '1LOSTADMIN', benefit: 'Bonus Reward' },
+            { name: 'KITT_RESET', benefit: 'Stat Reset' },
+            { name: 'SUB2GAMERROBOT_RESET1', benefit: 'Stat Reset' },
+            { name: 'SUB2UNCLEKIZARU', benefit: 'Bonus Reward' },
+            { name: 'BIGNEWS', benefit: 'Bonus Reward' }
+        ];
+
+        // RENDER KODE
+        function renderKodes(filtersKodes = kodes) {
+            const kodeGrid = document.getElementById('kodeGrid');
+            kodeGrid.innerHTML = '';
+
+            if (filtersKodes.length === 0) {
+                kodeGrid.innerHTML = '<p style="color: #888; grid-column: 1/-1;">Kode tidak ditemukan</p>';
+                return;
+            }
+
+            filtersKodes.forEach((kode, index) => {
+                const kodeCard = document.createElement('div');
+                kodeCard.className = 'kode-card';
+                kodeCard.innerHTML = `
+                    <div class="kode-info">
+                        <div class="kode-name">${kode.name}</div>
+                        <div class="kode-benefit">💰 ${kode.benefit}</div>
+                    </div>
+                    <button class="btn-copy" onclick="copyToClipboard('${kode.name}', this)">
+                        📋 COPY
+                    </button>
+                `;
+                kodeGrid.appendChild(kodeCard);
+            });
+        }
+
+        // COPY TO CLIPBOARD
+        function copyToClipboard(text, button) {
+            navigator.clipboard.writeText(text).then(() => {
+                const originalText = button.textContent;
+                button.textContent = '✓ COPIED';
+                button.classList.add('copied');
+                
+                setTimeout(() => {
+                    button.textContent = originalText;
+                    button.classList.remove('copied');
+                }, 2000);
+            }).catch(err => {
+                alert('Gagal copy kode');
+            });
+        }
+
+        // SEARCH FUNCTIONALITY
+        const searchBox = document.getElementById('searchBox');
+        searchBox.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const filteredKodes = kodes.filter(kode => 
+                kode.name.toLowerCase().includes(searchTerm) ||
+                kode.benefit.toLowerCase().includes(searchTerm)
+            );
+            renderKodes(filteredKodes);
+        });
+
+        // INIT
+        renderKodes();
+    </script>
+</body>
+</html>
